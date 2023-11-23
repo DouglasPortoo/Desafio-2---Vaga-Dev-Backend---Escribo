@@ -28,6 +28,15 @@ class UsersController {
 
     return response.status(201).json({ name, email, password, phone })
   }
+
+  async show(request, response) {
+    const id = request.user.id
+
+    const user = await knex("users").where({ id }).first()
+
+    return response.json({user})
+  }
+
 }
 
 module.exports = UsersController
