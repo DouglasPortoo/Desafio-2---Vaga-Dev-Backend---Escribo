@@ -59,7 +59,7 @@ Inicie o servidor
 
 ## Testando a funcionalidade
 
-No Insomnia Importe o arquivo ```Insomnia_2023-11-23.json``` que se encontra no projeto e efetue o teste das funcionalidades.
+No Insomnia Importe o arquivo ```Insomnia_2023-11-24.json``` que se encontra no projeto e efetue o teste das funcionalidades.
 
 ## Users:
 - Create:
