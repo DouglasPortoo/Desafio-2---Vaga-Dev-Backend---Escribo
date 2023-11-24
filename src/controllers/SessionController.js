@@ -1,42 +1,21 @@
-const { compare } = require("bcryptjs");
-const knex = require("../database/knex");
-const AppError = require("../utils/AppError");
-
-
-const AuthConfig = require("../configs/auth");
-const { sign } = require("jsonwebtoken");
+const SessionRepositories = require("../repositories/SessionRepositories");
+const SessionCreateService = require("../services/SessionCreateService");
 
 class SessionController {
-	async create(req, res) {
-		const { email, password } = req.body;
+	async create(request, response) {
+		const { email, password } = request.body;
 
-		const user = await knex("users").where({ email }).first();
+		const sessionRepositories = new SessionRepositories();
+		const sessionCreateService = new SessionCreateService(sessionRepositories);
 
-		if (!user) {
-			throw new AppError("Usuário e/ou senha inválidos", 401);
-		}
+		const data = await sessionCreateService.execute({ email, password });
 
-		if (password) {
-			const checkPassword = await compare(password, user.password);
-
-			if (!checkPassword) {
-				throw new AppError("Usuário e/ou senha inválidos", 401);
-			}
-		}
-
-		const { expiresIn, secret } = AuthConfig.jwt;
-
-		const token = sign({}, secret, {
-			subject: String(user.id),
-			expiresIn
-		});
-
-		return res.json({
-			"id": user.id,
-			"data da criação": user.created_at,
-			"data da atualização": user.updated_at,
-			"ultimo_login": new Date(),
-			"token": token
+		return response.status(201).json({
+			"id": data.user.id,
+			"data da criação": data.user.created_at,
+			"data da atualização": data.user.updated_at,
+			"ultimo_login": data.dataAtual,
+			"token": data.token
 		});
 	}
 }
