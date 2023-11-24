@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 require("express-async-errors");
 const AppError = require("./utils/AppError");
 
