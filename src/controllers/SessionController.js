@@ -2,6 +2,7 @@ const { compare } = require("bcryptjs");
 const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
 
+
 const AuthConfig = require("../configs/auth");
 const { sign } = require("jsonwebtoken");
 
@@ -30,7 +31,13 @@ class SessionController {
 			expiresIn
 		});
 
-		return res.json({ user, token });
+		return res.json({
+			"id": user.id,
+			"data da criação": user.created_at,
+			"data da atualização": user.updated_at,
+			"ultimo_login": new Date(),
+			"token": token
+		});
 	}
 }
 

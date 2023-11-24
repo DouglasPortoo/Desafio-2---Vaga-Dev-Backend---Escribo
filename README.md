@@ -25,6 +25,7 @@ Este é o desafio tecnico 2 para a empresa Escribo.
 
 
 
+
 ## Funcionalidade
 
 uma API RESTful para autenticação de usuários, que permita operações de cadastro (sign up), autenticação (sign in) e recuperação de informações do usuário.

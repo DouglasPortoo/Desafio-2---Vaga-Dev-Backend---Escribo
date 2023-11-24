@@ -26,7 +26,16 @@ class UsersController {
 
 		await knex("phones").insert(PhoneInsert);
 
-		return response.status(201).json({ name, email, password, phone });
+		const user = await knex("users").where({ id: user_id }).first();
+		console.log(user);
+
+		return response.status(201).json({
+			"id": user.id,
+			"data da criação": user.created_at,
+			"data da atualização":user.updated_at,
+			"ultimo_login": "Você ainda não fez Login",
+			"token": "Faça Login para gerar seu token de autenticação"
+		});
 	}
 
 	async show(request, response) {
@@ -34,7 +43,7 @@ class UsersController {
 
 		const user = await knex("users").where({ id }).first();
 
-		return response.json({user});
+		return response.json({ user });
 	}
 
 }
