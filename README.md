@@ -59,7 +59,7 @@ Inicie o servidor
 
 ## Testando a funcionalidade
 
-No Insomnia Importe o arquivo ```Insomnia_2023-11-24.json``` que se encontra no projeto e efetue o teste das funcionalidades.
+No Insomnia Importe o arquivo ```Insomnia_2023-11-24.json``` que se encontra na raix do projeto e efetue o teste das funcionalidades.
 
 ## Users:
 - Create:
@@ -90,7 +90,13 @@ No Insomnia Importe o arquivo ```Insomnia_2023-11-24.json``` que se encontra no 
 	    "password":"senha",
     }
 ```
-    
+## Testes automatizados:
 
+No terminal de o comando:
 
+```bash
+   npm test
+```
+
+obs: Acabei fazendo teste apenas no camada de Sign Up (Criação de Cadastro) 
 
