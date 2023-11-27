@@ -8,13 +8,13 @@ const { sign } = require("jsonwebtoken");
 
 
 class SessionCreateService{
-	constructor(userRepositories){
-		this.userRepositories=userRepositories;
+	constructor(sessionRepositories){
+		this.sessionRepositories=sessionRepositories;
 	}
 
 	async execute({ email, password } ){
 
-		const [user] = await this.userRepositories.findByEmail(email);
+		const [user] = await this.sessionRepositories.findByEmail(email);
 
 		if (!user) {
 			throw new AppError("Usuário e/ou senha inválidos", 401);
